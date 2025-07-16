@@ -1,0 +1,506 @@
+[
+    {
+        "numero_lista": 1,
+        "grupo": "3B",
+        "matricula": "500221",
+        "nombre": "AGUILAR OROSA, BRUNO ISAAC",
+        "shortName": "Bruno",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-bruno.mp4?alt=media&token=1ae7d8d6-f4ef-42fc-8e98-0745c39e188a",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 2,
+        "grupo": "3B",
+        "matricula": "500228",
+        "nombre": "ALVAREZ ESCOBAR, ISRAEL",
+        "shortName": "Israel",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-isra.mp4?alt=media&token=00a50a3d-6671-4a47-b358-e025759e9a1f",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 3,
+        "grupo": "3B",
+        "matricula": "500095",
+        "nombre": "ANASTACIO RAMOS, SARA MARIANA",
+        "shortName": "Sara",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-sara-m.mp4?alt=media&token=bd343c5a-49e5-4b8a-a4a8-f9c55125d044",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 4,
+        "grupo": "3B",
+        "matricula": "500442",
+        "nombre": "BENITEZ SOLIS, JAVIER YSMAEL",
+        "shortName": "Javier",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-javi.mp4?alt=media&token=cb191f4b-ee49-45f0-8209-bfda6b6bce7b",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 5,
+        "grupo": "3B",
+        "matricula": "500103",
+        "nombre": "CALDERÓN RIVAS, ARANZA DANAE",
+        "shortName": "Dana",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-danae.mp4?alt=media&token=969b5a4f-7efa-4d1b-8dd0-0665cfa5e4b8",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 6,
+        "grupo": "3B",
+        "matricula": "500106",
+        "nombre": "CAREAGA FOYO, PAULA",
+        "shortName": "Paula",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-pau.mp4?alt=media&token=bead4bf2-27a6-4e16-a85b-b1b7abd82524",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 7,
+        "grupo": "3B",
+        "matricula": "500440",
+        "nombre": "CASTRO LOPEZ, ELENA",
+        "shortName": "Elena",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-elena.mp4?alt=media&token=5160afdc-9b87-4a2e-b617-a9dd1e548547",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 8,
+        "grupo": "3B",
+        "matricula": "500220",
+        "nombre": "CASTRO MANJARREZ, LILIAN JHOSELYN",
+        "shortName": "Lilian",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-lili.mp4?alt=media&token=faedcf73-19a3-47b4-8ed8-1e08a2416366",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 9,
+        "grupo": "3B",
+        "matricula": "500249",
+        "nombre": "CERÓN AVENDAÑO, RENATA",
+        "shortName": "Renata",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-renata.mp4?alt=media&token=253bcdec-3ec0-4609-9a85-39e8da98bf77",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 10,
+        "grupo": "3B",
+        "matricula": "500698",
+        "nombre": "CHACON VIZUETH, MARIA FERNANDA",
+        "shortName": "Mafer",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-mafer.mp4?alt=media&token=1956d2ab-2138-4850-ac71-e4e471f50c57",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 11,
+        "grupo": "3B",
+        "matricula": "500444",
+        "nombre": "DUEÑAS SANTOS, JORGE ALEJANDRO",
+        "shortName": "Jorge",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 12,
+        "grupo": "3B",
+        "matricula": "500259",
+        "nombre": "ESCALANTE PEREZ, LIZBETH AMELLALY",
+        "shortName": "Amellaly",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-amellaly.mp4?alt=media&token=0a0214cd-dd97-468b-a261-8f232ccae6ba",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 13,
+        "grupo": "3B",
+        "matricula": "500247",
+        "nombre": "FLORES CARDENAS, SAMUEL",
+        "shortName": "Samuel",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-samuel.mp4?alt=media&token=1c899f99-322f-4b30-b12b-6ee17472fdfb",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 14,
+        "grupo": "3B",
+        "matricula": "500229",
+        "nombre": "GARCIA FAZ, NATALIA",
+        "shortName": "Natalia",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-natalia.mp4?alt=media&token=7b61a2eb-f114-4c2c-9eaf-0042213c3801",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 15,
+        "grupo": "3B",
+        "matricula": "500767",
+        "nombre": "GARCIA GIL, LESLIE GISSELL",
+        "shortName": "Leslie",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 16,
+        "grupo": "3B",
+        "matricula": "500235",
+        "nombre": "GARCÍA JIMENEZ, ANDREA",
+        "shortName": "Andrea García",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-andrea-gar.mp4?alt=media&token=204c932b-7ba5-4dc8-ae98-7195a10a9d48",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 17,
+        "grupo": "3B",
+        "matricula": "500270",
+        "nombre": "GONZALEZ HERNANDEZ, OMAR",
+        "shortName": "Omar",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-omar.mp4?alt=media&token=18ab683f-77de-4163-a02d-74a6f65b1149",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 18,
+        "grupo": "3B",
+        "matricula": "500840",
+        "nombre": "HERNANDEZ BERTADILLO, IAN CARLO",
+        "shortName": "Ian",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-ian-carlo.mp4?alt=media&token=43023ad8-22e4-41ac-8425-976eb5f8001d",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 19,
+        "grupo": "3B",
+        "matricula": "500078",
+        "nombre": "HERNANDEZ CARMONA, AXEL GABRIEL",
+        "shortName": "Axel",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-axel.mp4?alt=media&token=fad62f57-2e0f-41b1-b8ae-e52e14f196bc",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 20,
+        "grupo": "3B",
+        "matricula": "500628",
+        "nombre": "JACOBO HERNANDEZ, DIEGO ALBERTO",
+        "shortName": "Jacobo",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 21,
+        "grupo": "3B",
+        "matricula": "500224",
+        "nombre": "JASSO MARTINEZ, MATIAS ARTURO",
+        "shortName": "Matias",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-mati.mp4?alt=media&token=22bd6134-047e-4c1e-aa1e-f471009032a0",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 22,
+        "grupo": "3B",
+        "matricula": "500240",
+        "nombre": "MARQUEZ HERNANDEZ, ROSEMBERG ELIAS",
+        "shortName": "Rosemberg",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-ross.mp4?alt=media&token=983b2533-bcd6-4ae4-a79d-1a111fd12d1e",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 23,
+        "grupo": "3B",
+        "matricula": "500257",
+        "nombre": "MARTÍNEZ ZAVALETA, MÁXIMO ALEXANDER",
+        "shortName": "Alexander",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-alex.mp4?alt=media&token=750a1c7e-e591-437f-b481-fc539b5ada31",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 24,
+        "grupo": "3B",
+        "matricula": "500243",
+        "nombre": "MATEOS LICONA, SAID",
+        "shortName": "Said",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-said.mp4?alt=media&token=59039103-dd61-418a-a3b1-7fbb67b792c9",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 25,
+        "grupo": "3B",
+        "matricula": "500225",
+        "nombre": "MORALES MUÑOZ, ESMERALDA MONSERRATH",
+        "shortName": "Esmeralda",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-esme.mp4?alt=media&token=913a01cc-4801-423e-bd62-83323cfcc892",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 26,
+        "grupo": "3B",
+        "matricula": "500796",
+        "nombre": "NARCISO ARELLANO, MOISES ALBERTO",
+        "shortName": "Moises",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-moises.mp4?alt=media&token=80b15da1-f19b-4ccd-9c66-0bb9838e35d5",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 27,
+        "grupo": "3B",
+        "matricula": "500083",
+        "nombre": "NAVAS SANTOYO, IAN HUMBERTO",
+        "shortName": "Navas",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-navas-1.mp4?alt=media&token=d9620ee7-9eba-4ecd-ad68-64ecef970506",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+        {
+        "numero_lista": 27,
+        "grupo": "3B",
+        "matricula": "500083",
+        "nombre": "NAVAS SANTOYO, IAN HUMBERTO",
+        "shortName": "Navas",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-navas-2.mp4?alt=media&token=779da045-809a-4b5e-b4da-e83546a1b6ba",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 28,
+        "grupo": "3B",
+        "matricula": "500230",
+        "nombre": "NIETO TORRES, CAROLINA",
+        "shortName": "Carolina",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-caro.mp4?alt=media&token=08a65d42-3bce-465a-9eb4-a9b547fe7876",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 29,
+        "grupo": "3B",
+        "matricula": "500447",
+        "nombre": "OLGUIN RUIZ, ROBERTO",
+        "shortName": "Roberto",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-roberto-1.mp4?alt=media&token=c5c9cd68-05ee-4c72-8b8b-2ac8680b1bc9",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+        {
+        "numero_lista": 29,
+        "grupo": "3B",
+        "matricula": "500447",
+        "nombre": "OLGUIN RUIZ, ROBERTO",
+        "shortName": "Roberto",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-roberto-2.mp4?alt=media&token=25143957-d9d4-44e3-b4e4-3e9e2413acac",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 30,
+        "grupo": "3B",
+        "matricula": "500227",
+        "nombre": "RAMIREZ MARTINEZ, VANESSA MAIBHE",
+        "shortName": "Vanessa",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-vane.mp4?alt=media&token=0cd6c6a4-f74f-48e0-a79d-80cf3c3263c6",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    },
+    {
+        "numero_lista": 31,
+        "grupo": "3B",
+        "matricula": "500260",
+        "nombre": "RODRÍGUEZ MORALES, IAN ALBERICH",
+        "shortName": "Alberich",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 32,
+        "grupo": "3B",
+        "matricula": "500104",
+        "nombre": "TAUBIG VILLEDA, ANDREA ELIZABETH",
+        "shortName": "Andrea Taubi",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 33,
+        "grupo": "3B",
+        "matricula": "500079",
+        "nombre": "TREJO RICO, SYBEL DANIEL",
+        "shortName": "",
+        "videos": [
+            {
+                "url": "parents-videos/grupo-b/video-1.mp4",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": false
+            }
+        ]
+    },
+    {
+        "numero_lista": 34,
+        "grupo": "3B",
+        "matricula": "500222",
+        "nombre": "VEGA JASO, SARA SOFÍA ARLENZIU",
+        "shortName": "",
+        "videos": [
+            {
+                "url": "https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/parent%20videos%2F3B%2Fvideo-s.-sofia.mp4?alt=media&token=5632a853-bcb3-4a95-964d-f5d4a5963f83",
+                "title": "¡Tienes un mensaje pendiente!",
+                "disponible": true
+            }
+        ]
+    }
+]
