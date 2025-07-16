@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generación 2025</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content animate__animated animate__fadeIn">
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+            </div>
+            <div class="modal-body">
+                <div id="loginError" class="error-message"></div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Usuario:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn-login">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until login) -->
+    <div id="mainContent" class="hidden">
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <h1 class="title animate__animated animate__fadeIn"><i>Generación 2025</i></h1>
+                <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Recordando los mejores momentos juntos</p>
+                <button id="moderatorBtn" class="moderator-btn animate__animated animate__fadeIn animate__delay-2s">
+                    <i class="fas fa-user-shield"></i> Panel de Moderador
+                </button>
+            </div>
+        </header>
+
+        <!-- Motivational Section -->
+        <section id="motivational" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <div class="motivational-text">
+                    <p id="motivationalPhrase"></p>
+                </div>
+            </div>
+        </section>
+
+        <!--Pase de lista-->
+        <section id="attendance" class="animate__animated animate__fadeIn">
+    <div class="container">
+        <h2>Registro de Asistencia</h2>
+        <div class="login-section">
+            <input type="password" id="studentId" placeholder="Matrícula (6 dígitos)" maxlength="6" autocomplete="off">
+            <button id="verifyBtn">Verificar</button>
+        </div>
+        
+        <div id="message" class="message hidden"></div>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="3A">Grupo 3A</button>
+            <button class="tab-button" data-tab="3B">Grupo 3B</button>
+        </div>
+        
+        <div class="tab-content active" id="tab-3A">
+            <div class="table-container">
+                <table id="table3A">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Asistencia</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="tab-3B">
+            <div class="table-container">
+                <table id="table3B">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Asistencia</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Students Section -->
+        <section id="students" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <h2>Nuestros Estudiantes</h2>
+                <div class="group-selector">
+                    <button class="group-btn active" data-group="A">3ro A</button>
+                    <button class="group-btn" data-group="B">3ro B</button>
+                </div>
+                <div id="studentsContainer" class="students-grid"></div>
+            </div>
+        </section>
+
+        <!-- Teachers Section -->
+        <section id="teachers" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <h2>Nuestros Profesores</h2>
+                <div id="teachersContainer" class="teachers-grid"></div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <h2>Galería de Recuerdos</h2>
+                <div class="gallery-tabs">
+                    <button class="tab-btn active" data-tab="images">Imágenes</button>
+                    <button class="tab-btn" data-tab="videos">Videos</button>
+                </div>
+                <div id="galleryImages" class="gallery-content active">
+                    <div class="gallery-grid" id="imagesGrid"></div>
+                    <p class="message-gallery-pro">¡Sube tus imagenes en la parte de hasta abajo de la página!</p>
+                </div>
+                <div id="galleryVideos" class="gallery-content">
+                    <p id="alert-vid">Upss... aquí no hay videos. ¡Sé el primero en compartir!</p>
+                    <p class="message-gallery-pro">¡Sube tus videos en la parte de hasta abajo de la página!</p>
+                    <div class="gallery-grid" id="videosGrid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Videos de Padres -->
+<section id="parents-videos" class="animate__animated animate__fadeIn">
+    <div class="container">
+        <h2>Mensajes Especiales de Padres</h2>
+        <div class="parents-notice">
+            <i class="fas fa-headphones"></i> Recomendamos usar audífonos para esta sección
+        </div>
+        
+        <!-- Añade este sistema de login similar al pase de lista -->
+        <div class="video-login-section">
+            <input type="password" id="parentStudentId" placeholder="Matrícula (6 dígitos)" maxlength="6" autocomplete="off">
+            <button id="verifyParentBtn">Verificar</button>
+        </div>
+        
+        <div id="parentVideoMessage" class="message hidden"></div>
+        
+        <div class="group-selector">
+            <button class="group-btn active" data-group="A">3ro A</button>
+            <button class="group-btn" data-group="B">3ro B</button>
+        </div>
+        
+        <div id="parentsVideosContainer" class="parents-videos-grid"></div>
+    </div>
+</section>
+
+        <!-- Upload Section -->
+        <section id="upload" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <h2>Comparte tus Recuerdos</h2>
+                <div class="upload-tabs">
+                    <button class="upload-tab-btn active" data-upload="photos">Subir Fotos</button>
+                    <button class="upload-tab-btn" data-upload="videos">Subir Videos</button>
+                </div>
+                <div id="uploadPhotos" class="upload-content active">
+                    <!--Para fotos-->
+                    <form id="photoUploadForm">
+                        <input type="file" id="photoInput" accept="image/*" multiple>
+                        <button type="submit" id="uploadPhotoBtn" class="upload-btn">Subir Fotos</button>
+                    </form>
+                    <div id="uploadedPhotos" class="uploaded-items"></div>
+                </div>
+                <div id="uploadVideos" class="upload-content">
+                    <form id="videoUploadForm">
+                        <input type="file" id="videoInput" accept="video/*" multiple>
+                        <button type="submit" id="uploadVideoBtn" class="upload-btn">Subir Videos</button>
+                        </form>
+                    <div id="uploadedVideos" class="uploaded-items"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section id="messages" class="animate__animated animate__fadeIn">
+            <div class="container">
+                <h2>Deja tu Mensaje</h2>
+                <form id="messageForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="senderName">Nombre:</label>
+                            <input type="text" id="senderName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senderGroup">Grupo:</label>
+                            <select id="senderGroup" required>
+                                <option value="A">3ro A</option>
+                                <option value="B">3ro B</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageContent">Mensaje:</label>
+                        <textarea id="messageContent" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="messageMedia">¿Deseas subir alguna imagen o video junto con tu mensaje? (Opcional)</label>
+                        <input type="file" id="messageMedia" accept="image/*,video/*">
+                    </div>
+                    <button type="submit" class="submit-btn">Publicar Mensaje</button>
+                </form>
+                <div id="messagesContainer" class="messages-list"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="animate__animated animate__fadeIn">
+            <div class="memories-floating">🎓</div>
+            <div class="memories-floating">📚</div>
+            <div class="memories-floating">📸</div>
+            <div class="memories-floating">🎉</div>
+            <div class="container">
+                <p>Generación 2025 - Todos los derechos reservados. Cualquier uso inapropiado de la página o del contenido de la página será sancionado.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Moderator Panel Modal -->
+    <div id="moderatorModal" class="modal hidden">
+        <div class="modal-content moderator-content">
+            <div class="modal-header">
+                <h2>Panel de Moderador</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="moderatorLogin" class="moderator-login">
+                    <form id="moderatorLoginForm">
+                        <div class="form-group">
+                            <label for="modUsername">Usuario:</label>
+                            <input type="text" id="modUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modPassword">Contraseña:</label>
+                            <input type="password" id="modPassword" required>
+                        </div>
+                        <button type="submit" class="btn-login">Ingresar</button>
+                    </form>
+                </div>
+                <div id="moderatorPanel" class="hidden">
+                    <div class="moderator-tabs">
+                        <button class="mod-tab-btn active" data-mod-tab="photos">Fotos</button>
+                        <button class="mod-tab-btn" data-mod-tab="videos">Videos</button>
+                        <button class="mod-tab-btn" data-mod-tab="messages">Mensajes</button>
+                    </div>
+                    <div id="modPhotos" class="mod-content active">
+                        <div id="modPhotosList" class="mod-list"></div>
+                    </div>
+                    <div id="modVideos" class="mod-content">
+                        <div id="modVideosList" class="mod-list"></div>
+                    </div>
+                    <div id="modMessages" class="mod-content">
+                        <div id="modMessagesList" class="mod-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content confirm-content">
+            <div class="modal-header">
+                <h3 id="confirmTitle">Confirmar Eliminación</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmNo" class="btn-cancel">Cancelar</button>
+                <button id="confirmYes" class="btn-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js" type="module"></script>
+<script src="script.js" type="module"></script>
+</html>
