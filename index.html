@@ -179,35 +179,15 @@
                     <!--Para fotos-->
                     <form id="photoUploadForm">
                         <input type="file" id="photoInput" accept="image/*" multiple>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                            <div class="progress-text">0%</div>
-                        </div>
-                        <button type="submit" class="upload-btn">
-                            <span class="upload-text">Subir Fotos</span>
-                            <span class="upload-spinner" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Subiendo...
-                            </span>
-                        </button>
+                        <button type="submit" id="uploadPhotoBtn" class="upload-btn">Subir Fotos</button>
                     </form>
                     <div id="uploadedPhotos" class="uploaded-items"></div>
                 </div>
-
-                <!--Para videos-->
                 <div id="uploadVideos" class="upload-content">
                     <form id="videoUploadForm">
                         <input type="file" id="videoInput" accept="video/*" multiple>
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                            <div class="progress-text">0%</div>
-                        </div>
-                            <button type="submit" class="upload-btn">
-                                <span class="upload-text">Subir Videos</span>
-                                <span class="upload-spinner" style="display: none;">
-                                <i class="fas fa-spinner fa-spin"></i> Subiendo...
-                            </span>
-                        </button>
-                    </form>
+                        <button type="submit" id="uploadVideoBtn" class="upload-btn">Subir Videos</button>
+                        </form>
                     <div id="uploadedVideos" class="uploaded-items"></div>
                 </div>
             </div>
@@ -236,24 +216,19 @@
                         <textarea id="messageContent" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="messageMedia">¿Deseas subir alguna imagen o video junto con tu mensaje? (Opcional)</label>
-                        <input type="file" id="messageMedia" accept="image/*,video/*">
-                    </div>
-
-                    <!-- Barra de progreso -->
-                        <div class="progress-container">
-                            <div class="progress-bar"></div>
-                            <div class="progress-text">0%</div>
+                        <label for="messageMedia">Archivo adjunto (opcional):</label>
+                        <div class="file-input-container">
+                            <input type="file" id="messageMedia" accept="image/*,video/*">
+                            <span id="messageMediaName" class="file-name">Ningún archivo seleccionado</span>
                         </div>
-
-                        <!-- Botón con estados -->
-                        <button type="submit" class="submit-btn">
-                            <span class="submit-text">Publicar Mensaje</span>
-                            <span class="submit-spinner" style="display: none;">
-                                <i class="fas fa-spinner fa-spin"></i> Procesando...
-                            </span>
-                        </button>
-                    </form>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="submit-text">Publicar Mensaje</span>
+                        <span class="submit-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                </form>
                 <div id="messagesContainer" class="messages-list"></div>
             </div>
         </section>

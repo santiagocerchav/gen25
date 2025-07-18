@@ -44,6 +44,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ===== MOSTRAR NOMBRE DE ARCHIVO SELECCIONADO =====
+document.getElementById('messageMedia').addEventListener('change', function(e) {
+    const fileName = e.target.files[0]?.name || 'Ningún archivo seleccionado';
+    document.getElementById('messageMediaName').textContent = fileName;
+});
+
+// También aplícalo a los inputs de fotos/videos si lo deseas:
+document.getElementById('photoInput').addEventListener('change', function(e) {
+    const fileName = e.target.files[0]?.name || 'Ningún archivo seleccionado';
+    // Puedes mostrar esto en algún elemento cercano si lo necesitas
+});
+
+document.getElementById('videoInput').addEventListener('change', function(e) {
+    const fileName = e.target.files[0]?.name || 'Ningún archivo seleccionado';
+    // Mismo caso que arriba
+});
+
 // Función mejorada para el modo oscuro
 function toggleDarkMode() {
     const isDark = document.body.classList.toggle('dark-mode');
@@ -60,15 +77,21 @@ function toggleDarkMode() {
 
 // Inicialización del modo oscuro
 document.addEventListener('DOMContentLoaded', function() {
+    // Configurar el toggle de modo oscuro
     const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    
-    // Aplicar tema guardado
-    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
-    themeToggle.textContent = savedTheme === 'dark' ? '🌞' : '🌙';
-    
-    // Event listener para el botón de toggle
-    themeToggle.addEventListener('click', toggleDarkMode);
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        // Cambiar el ícono según el modo
+        this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        // Guardar preferencia en localStorage
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+
+    // Cargar preferencia de modo oscuro al inicio
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+        themeToggle.textContent = '☀️';
+    }
 });
 
 // Initialize the application
@@ -738,51 +761,21 @@ function initUploadSection() {
 
 // ===== FUNCIÓN MEJORADA PARA SUBIR ARCHIVOS =====
 async function uploadFiles(type) {
+    const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
+    
+    const inputId = type === 'photos' ? 'photoInput' : 'videoInput';
+    const files = document.getElementById(inputId).files;
+    
+    if (files.length === 0) {
+        showAlert(`Por favor selecciona al menos un ${type === 'photos' ? 'imagen' : 'video'} para subir.`, 'error');
+        return;
+    }
+    
+    const uploadBtn = document.querySelector(`#upload${type.charAt(0).toUpperCase() + type.slice(1)} .upload-btn`);
+    uploadBtn.disabled = true;
+    uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
+    
     try {
-        const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
-        
-        // Obtener elementos del formulario correcto (corregido "photos" por "photo")
-        const formId = type === 'photos' ? 'photoUploadForm' : 'videoUploadForm';
-        const form = document.getElementById(formId);
-        
-        // Verificar que el formulario existe
-        if (!form) {
-            console.error(`Formulario ${formId} no encontrado`);
-            showAlert('Error en el formulario de subida', 'error');
-            return;
-        }
-        
-        // Obtener elementos dentro del formulario
-        const inputId = type === 'photos' ? 'photoInput' : 'videoInput';
-        const fileInput = document.getElementById(inputId);
-        const uploadBtn = form.querySelector('.upload-btn');
-        const progressContainer = form.querySelector('.progress-container');
-        const progressBar = form.querySelector('.progress-bar');
-        const progressText = form.querySelector('.progress-text');
-        
-        // Verificar que los elementos existen
-        if (!fileInput || !uploadBtn || !progressContainer || !progressBar || !progressText) {
-            console.error('Elementos requeridos no encontrados');
-            showAlert('Error en los controles de subida', 'error');
-            return;
-        }
-        
-        const files = fileInput.files;
-        
-        if (files.length === 0) {
-            showAlert(`Por favor selecciona al menos un ${type === 'photos' ? 'imagen' : 'video'} para subir.`, 'error');
-            return;
-        }
-        
-        // Configurar estado de subida
-        const uploadText = uploadBtn.querySelector('.upload-text');
-        const uploadSpinner = uploadBtn.querySelector('.upload-spinner');
-        
-        uploadBtn.disabled = true;
-        if (uploadText) uploadText.style.display = 'none';
-        if (uploadSpinner) uploadSpinner.style.display = 'inline-block';
-        progressContainer.style.display = 'block';
-        
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             const filePath = `${type}/${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
@@ -795,13 +788,11 @@ async function uploadFiles(type) {
                 }
             };
 
+            // Subir el archivo
             await uploadBytes(fileRef, file, metadata);
-            
-            const uploadProgress = ((i + 1) / files.length) * 100;
-            progressBar.style.width = `${uploadProgress}%`;
-            progressText.textContent = `${Math.round(uploadProgress)}%`;
-            
             const downloadURL = await getDownloadURL(fileRef);
+            
+            // Guardar en Firestore
             await addDoc(collection(db, 'uploads'), {
                 type: type,
                 url: downloadURL,
@@ -818,36 +809,8 @@ async function uploadFiles(type) {
         console.error('Error al subir archivos:', error);
         showAlert(`Error al subir: ${error.message}`, 'error');
     } finally {
-        // Restablecer estado - ahora con verificaciones de seguridad
-        const form = document.getElementById(`${type}UploadForm`);
-        if (form) {
-            const uploadBtn = form.querySelector('.upload-btn');
-            const progressContainer = form.querySelector('.progress-container');
-            const progressBar = form.querySelector('.progress-bar');
-            const progressText = form.querySelector('.progress-text');
-            
-            if (progressBar && progressText) {
-                progressBar.style.width = '100%';
-                progressText.textContent = '100%';
-            }
-            
-            setTimeout(() => {
-                if (progressContainer) progressContainer.style.display = 'none';
-                if (progressBar) progressBar.style.width = '0%';
-                if (progressText) progressText.textContent = '0%';
-                
-                if (uploadBtn) {
-                    uploadBtn.disabled = false;
-                    const uploadText = uploadBtn.querySelector('.upload-text');
-                    const uploadSpinner = uploadBtn.querySelector('.upload-spinner');
-                    if (uploadText) uploadText.style.display = 'inline-block';
-                    if (uploadSpinner) uploadSpinner.style.display = 'none';
-                }
-                
-                const fileInput = document.getElementById(`${type}Input`);
-                if (fileInput) fileInput.value = '';
-            }, 1000);
-        }
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = type === 'photos' ? 'Subir Fotos' : 'Subir Videos';
     }
 }
 
@@ -919,12 +882,9 @@ async function submitMessage() {
     const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
     
     const form = document.getElementById('messageForm');
-    const progressContainer = form.querySelector('.progress-container');
-    const progressBar = form.querySelector('.progress-bar');
-    const progressText = form.querySelector('.progress-text');
     const submitBtn = form.querySelector('.submit-btn');
-    const submitText = submitBtn.querySelector('.submit-text');
-    const submitSpinner = submitBtn.querySelector('.submit-spinner');
+    const submitText = form.querySelector('.submit-text');
+    const submitSpinner = form.querySelector('.submit-spinner');
     
     const name = document.getElementById('senderName').value;
     const group = document.getElementById('senderGroup').value;
@@ -936,11 +896,10 @@ async function submitMessage() {
         return;
     }
     
-    // Configurar estado de envío
+    // Estado de carga
     submitBtn.disabled = true;
-    submitText.style.display = 'none';
-    submitSpinner.style.display = 'inline-block';
-    progressContainer.style.display = 'block';
+    if (submitText) submitText.style.display = 'none';
+    if (submitSpinner) submitSpinner.style.display = 'inline-block';
     
     try {
         let mediaURL = null;
@@ -950,19 +909,10 @@ async function submitMessage() {
             mediaType = mediaFile.type.includes('image') ? 'image' : 'video';
             const filePath = `messages/${Date.now()}_${mediaFile.name}`;
             const fileRef = storageRef(storage, filePath);
-            
-            // Subir archivo (50% del progreso)
             await uploadBytes(fileRef, mediaFile);
-            progressBar.style.width = '50%';
-            progressText.textContent = '50%';
-            
-            // Obtener URL (75% del progreso)
             mediaURL = await getDownloadURL(fileRef);
-            progressBar.style.width = '75%';
-            progressText.textContent = '75%';
         }
         
-        // Guardar mensaje (100% del progreso)
         await addDoc(collection(db, 'messages'), {
             name: name,
             group: group,
@@ -972,26 +922,15 @@ async function submitMessage() {
             createdAt: serverTimestamp()
         });
         
-        progressBar.style.width = '100%';
-        progressText.textContent = '100%';
-        
-        showAlert('Mensaje publicado con éxito!', 'success');
-        form.reset();
-        loadMessages();
+        showAlert('Archivos subidos correctamente!', 'success');
+        fileInput.value = ''; // 🔥 Limpia el input de archivos
+        loadUploadedItems();
     } catch (error) {
-        console.error('Error submitting message:', error);
-        showAlert(`Error al publicar el mensaje: ${error.message}`, 'error');
+        console.error('Error al subir archivos:', error);
+        showAlert(`Error al subir: ${error.message}`, 'error');
     } finally {
-        // Restablecer estado
-        setTimeout(() => {
-            progressContainer.style.display = 'none';
-            progressBar.style.width = '0%';
-            progressText.textContent = '0%';
-            
-            submitBtn.disabled = false;
-            submitText.style.display = 'inline-block';
-            submitSpinner.style.display = 'none';
-        }, 1000);
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = type === 'photos' ? 'Subir Fotos' : 'Subir Videos';
     }
 }
 
