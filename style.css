@@ -564,7 +564,6 @@ header .subtitle {
 
 .gallery-video {
     width: 100%;
-    height: 200px;
     object-fit: cover;
     display: block;
 }
@@ -634,14 +633,12 @@ header .subtitle {
 
 .uploaded-img {
     width: 100%;
-    height: 150px;
     object-fit: cover;
     display: block;
 }
 
 .uploaded-video {
     width: 100%;
-    height: 150px;
     object-fit: cover;
     display: block;
 }
@@ -1683,4 +1680,269 @@ footer:hover .memories-floating {
         height: auto;
         min-height: 300px;
     }
+}
+
+
+/* ===== ESTILOS PARA BOTONES CON ESTADOS ===== */
+.upload-btn, .submit-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-text, .submit-text,
+.upload-spinner, .submit-spinner {
+    transition: all 0.3s ease;
+}
+
+.upload-spinner, .submit-spinner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ===== ESTILOS PARA BARRAS DE PROGRESO ===== */
+.progress-container {
+    width: 100%;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow: hidden;
+    display: none;
+}
+
+.dark-mode .progress-container {
+    background-color: #333;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #666;
+}
+
+.dark-mode .progress-text {
+    color: #aaa;
+}
+
+/* ===== CORRECCIONES PARA MODO OSCURO ===== */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Correcciones para secciones específicas */
+.dark-mode #mainContent,
+.dark-mode #students,
+.dark-mode #teachers,
+.dark-mode #gallery,
+.dark-mode #upload,
+.dark-mode #messages,
+.dark-mode #attendance,
+.dark-mode #parents-videos {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Correcciones para tarjetas y contenedores */
+.dark-mode .student-card-front,
+.dark-mode .teacher-card-front,
+.dark-mode .gallery-item,
+.dark-mode .uploaded-item,
+.dark-mode .message-item,
+.dark-mode .modal-content,
+.dark-mode .confirm-content,
+.dark-mode .mod-item {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #333 !important;
+}
+
+/* Correcciones para texto y encabezados */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode .student-name,
+.dark-mode .teacher-name,
+.dark-mode .message-sender,
+.dark-mode .message-date,
+.dark-mode .upload-caption,
+.dark-mode .gallery-caption {
+    color: #e0e0e0 !important;
+}
+
+/* Correcciones para inputs y formularios */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+/* Correcciones para tablas */
+.dark-mode table,
+.dark-mode th,
+.dark-mode td,
+.dark-mode .table-container {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+.dark-mode th {
+    background-color: #2d2d2d !important;
+}
+
+.dark-mode tr:nth-child(even) {
+    background-color: #2d2d2d !important;
+}
+
+/* Correcciones para botones */
+.dark-mode .btn-login,
+.dark-mode .upload-btn,
+.dark-mode .submit-btn,
+.dark-mode .mod-tab-btn,
+.dark-mode .group-btn,
+.dark-mode .tab-btn,
+.dark-mode .upload-tab-btn {
+    background-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .btn-login:hover,
+.dark-mode .upload-btn:hover,
+.dark-mode .submit-btn:hover {
+    background-color: #444 !important;
+}
+
+/* Correcciones para elementos específicos */
+.dark-mode .student-card-back,
+.dark-mode .teacher-card-back {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .teacher-subject,
+.dark-mode .student-group {
+    color: #aaa !important;
+}
+
+.dark-mode .progress-container {
+    background-color: #333 !important;
+}
+
+.dark-mode .progress-text {
+    color: #aaa !important;
+}
+
+/* Correcciones para el modal de login */
+.dark-mode #loginModal .modal-content {
+    background-color: #1e1e1e !important;
+}
+
+.dark-mode #loginModal .modal-header {
+    background-color: #333 !important;
+}
+
+/* Correcciones para el panel de moderador */
+.dark-mode #moderatorPanel,
+.dark-mode .mod-list,
+.dark-mode .mod-content {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+/* Correcciones para mensajes de error/éxito */
+.dark-mode .error-message,
+.dark-mode .message.success,
+.dark-mode .message.error {
+    color: #fff !important;
+}
+
+.dark-mode .message.success {
+    background-color: rgba(40, 167, 69, 0.3) !important;
+    border-color: #28a745 !important;
+}
+
+.dark-mode .message.error {
+    background-color: rgba(220, 53, 69, 0.3) !important;
+    border-color: #dc3545 !important;
+}
+
+/* Correcciones para la sección de videos de padres */
+.dark-mode .parent-video-message {
+    background-color: rgba(30, 30, 30, 0.9) !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .parent-video-message h3,
+.dark-mode .parent-video-message h4 {
+    color: #9370db !important;
+}
+
+/* Correcciones para el footer */
+.dark-mode footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%) !important;
+}
+
+/* Correcciones para las tarjetas de estudiantes/profesores */
+.dark-mode .student-card-front,
+.dark-mode .teacher-card-front {
+    background-color: #2d2d2d !important;
+}
+
+/* Correcciones para los botones de grupo */
+.dark-mode .group-btn:not(.active) {
+    background-color: #333 !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .group-btn.active {
+    background-color: #6a5acd !important;
+}
+
+/* ===== BOTÓN TOGGLE MODO OSCURO ===== */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.dark-mode .theme-toggle {
+    background: #555;
+    color: #fff;
 }

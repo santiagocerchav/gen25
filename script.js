@@ -44,6 +44,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Función mejorada para el modo oscuro
+function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    document.getElementById('themeToggle').textContent = isDark ? '🌞' : '🌙';
+    
+    // Forzar actualización de componentes dinámicos
+    document.querySelectorAll('.student-card, .teacher-card, .message-item').forEach(el => {
+        el.style.display = 'none';
+        el.offsetHeight; // Trigger reflow
+        el.style.display = '';
+    });
+}
+
+// Inicialización del modo oscuro
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Aplicar tema guardado
+    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+    themeToggle.textContent = savedTheme === 'dark' ? '🌞' : '🌙';
+    
+    // Event listener para el botón de toggle
+    themeToggle.addEventListener('click', toggleDarkMode);
+});
+
 // Initialize the application
 async function initApp() {
     // Load motivational phrase
@@ -510,7 +537,7 @@ function loadGalleryVideos() {
         videosGrid.innerHTML = '';
         
         const defaultVideos = [
-            /*{ url: 'assets/videos/video1.mp4', name: 'Ceremonia de premiación' }*/
+            { url: 'https://firebasestorage.googleapis.com/v0/b/gen25-2-prueba1.firebasestorage.app/o/vid%2Fvideo_3A.mp4?alt=media&token=236a033a-4529-4f7d-9a6a-0b05b9767391', name: 'Video 3A' }
         ];
         
         defaultVideos.forEach(video => {
@@ -694,14 +721,12 @@ function initUploadSection() {
     });
     
     // Photo upload form
-    const photoUploadForm = document.getElementById('photoUploadForm');
     photoUploadForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        uploadFiles('photos');
+        uploadFiles('photos'); // Aquí se mantiene "photos" como tipo
     });
     
     // Video upload form
-    const videoUploadForm = document.getElementById('videoUploadForm');
     videoUploadForm.addEventListener('submit', function(e) {
         e.preventDefault();
         uploadFiles('videos');
@@ -711,32 +736,53 @@ function initUploadSection() {
     loadUploadedItems();
 }
 
+// ===== FUNCIÓN MEJORADA PARA SUBIR ARCHIVOS =====
 async function uploadFiles(type) {
-    const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp, auth } = await import('./firebase-config.js');
-    
-    const inputId = type === 'photos' ? 'photoInput' : 'videoInput';
-    const files = document.getElementById(inputId).files;
-    
-    if (files.length === 0) {
-        showAlert(`Por favor selecciona al menos un ${type === 'photos' ? 'imagen' : 'video'} para subir.`, 'error');
-        return;
-    }
-    
-    const uploadBtn = document.querySelector(`#upload${type.charAt(0).toUpperCase() + type.slice(1)} .upload-btn`);
-    uploadBtn.disabled = true;
-    uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
-    
     try {
-        // Esperar autenticación si es necesario
-        if (!auth.currentUser) {
-            await new Promise(resolve => {
-                const unsubscribe = auth.onAuthStateChanged(user => {
-                    unsubscribe();
-                    resolve();
-                });
-            });
+        const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
+        
+        // Obtener elementos del formulario correcto (corregido "photos" por "photo")
+        const formId = type === 'photos' ? 'photoUploadForm' : 'videoUploadForm';
+        const form = document.getElementById(formId);
+        
+        // Verificar que el formulario existe
+        if (!form) {
+            console.error(`Formulario ${formId} no encontrado`);
+            showAlert('Error en el formulario de subida', 'error');
+            return;
         }
-
+        
+        // Obtener elementos dentro del formulario
+        const inputId = type === 'photos' ? 'photoInput' : 'videoInput';
+        const fileInput = document.getElementById(inputId);
+        const uploadBtn = form.querySelector('.upload-btn');
+        const progressContainer = form.querySelector('.progress-container');
+        const progressBar = form.querySelector('.progress-bar');
+        const progressText = form.querySelector('.progress-text');
+        
+        // Verificar que los elementos existen
+        if (!fileInput || !uploadBtn || !progressContainer || !progressBar || !progressText) {
+            console.error('Elementos requeridos no encontrados');
+            showAlert('Error en los controles de subida', 'error');
+            return;
+        }
+        
+        const files = fileInput.files;
+        
+        if (files.length === 0) {
+            showAlert(`Por favor selecciona al menos un ${type === 'photos' ? 'imagen' : 'video'} para subir.`, 'error');
+            return;
+        }
+        
+        // Configurar estado de subida
+        const uploadText = uploadBtn.querySelector('.upload-text');
+        const uploadSpinner = uploadBtn.querySelector('.upload-spinner');
+        
+        uploadBtn.disabled = true;
+        if (uploadText) uploadText.style.display = 'none';
+        if (uploadSpinner) uploadSpinner.style.display = 'inline-block';
+        progressContainer.style.display = 'block';
+        
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             const filePath = `${type}/${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
@@ -745,21 +791,24 @@ async function uploadFiles(type) {
             const metadata = {
                 contentType: file.type,
                 customMetadata: {
-                    uploadedBy: auth.currentUser?.uid || 'anonymous'
+                    uploadedBy: 'shared-account'
                 }
             };
 
-            // Subir el archivo
             await uploadBytes(fileRef, file, metadata);
-            const downloadURL = await getDownloadURL(fileRef);
             
-            // Guardar en Firestore
+            const uploadProgress = ((i + 1) / files.length) * 100;
+            progressBar.style.width = `${uploadProgress}%`;
+            progressText.textContent = `${Math.round(uploadProgress)}%`;
+            
+            const downloadURL = await getDownloadURL(fileRef);
             await addDoc(collection(db, 'uploads'), {
                 type: type,
                 url: downloadURL,
                 name: file.name,
                 size: file.size,
-                uploadedAt: serverTimestamp()
+                uploadedAt: serverTimestamp(),
+                uploadedBy: 'shared-account'
             });
         }
         
@@ -769,8 +818,36 @@ async function uploadFiles(type) {
         console.error('Error al subir archivos:', error);
         showAlert(`Error al subir: ${error.message}`, 'error');
     } finally {
-        uploadBtn.disabled = false;
-        uploadBtn.textContent = type === 'photos' ? 'Subir Fotos' : 'Subir Videos';
+        // Restablecer estado - ahora con verificaciones de seguridad
+        const form = document.getElementById(`${type}UploadForm`);
+        if (form) {
+            const uploadBtn = form.querySelector('.upload-btn');
+            const progressContainer = form.querySelector('.progress-container');
+            const progressBar = form.querySelector('.progress-bar');
+            const progressText = form.querySelector('.progress-text');
+            
+            if (progressBar && progressText) {
+                progressBar.style.width = '100%';
+                progressText.textContent = '100%';
+            }
+            
+            setTimeout(() => {
+                if (progressContainer) progressContainer.style.display = 'none';
+                if (progressBar) progressBar.style.width = '0%';
+                if (progressText) progressText.textContent = '0%';
+                
+                if (uploadBtn) {
+                    uploadBtn.disabled = false;
+                    const uploadText = uploadBtn.querySelector('.upload-text');
+                    const uploadSpinner = uploadBtn.querySelector('.upload-spinner');
+                    if (uploadText) uploadText.style.display = 'inline-block';
+                    if (uploadSpinner) uploadSpinner.style.display = 'none';
+                }
+                
+                const fileInput = document.getElementById(`${type}Input`);
+                if (fileInput) fileInput.value = '';
+            }, 1000);
+        }
     }
 }
 
@@ -801,7 +878,7 @@ async function loadUploadedItems() {
             if (item.type === 'photos') {
                 itemElement.innerHTML = `
                     <img src="${item.url}" alt="${item.name}" class="uploaded-img">
-                    <div class="upload-caption">${item.name}</div>
+                    <div class="upload-caption"></div>
                 `;
             } else {
                 itemElement.innerHTML = `
@@ -809,7 +886,7 @@ async function loadUploadedItems() {
                         <source src="${item.url}" type="video/mp4">
                         Tu navegador no soporta el elemento de video.
                     </video>
-                    <div class="upload-caption">${item.name}</div>
+                    <div class="upload-caption"></div>
                 `;
             }
             
@@ -837,8 +914,17 @@ function initMessagesSection() {
     loadMessages();
 }
 
+// ===== FUNCIÓN MEJORADA PARA ENVIAR MENSAJES =====
 async function submitMessage() {
-    const { storage, ref, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
+    const { storage, storageRef, uploadBytes, getDownloadURL, db, collection, addDoc, serverTimestamp } = await import('./firebase-config.js');
+    
+    const form = document.getElementById('messageForm');
+    const progressContainer = form.querySelector('.progress-container');
+    const progressBar = form.querySelector('.progress-bar');
+    const progressText = form.querySelector('.progress-text');
+    const submitBtn = form.querySelector('.submit-btn');
+    const submitText = submitBtn.querySelector('.submit-text');
+    const submitSpinner = submitBtn.querySelector('.submit-spinner');
     
     const name = document.getElementById('senderName').value;
     const group = document.getElementById('senderGroup').value;
@@ -850,25 +936,33 @@ async function submitMessage() {
         return;
     }
     
-    const submitBtn = document.querySelector('#messageForm .submit-btn');
+    // Configurar estado de envío
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publicando...';
+    submitText.style.display = 'none';
+    submitSpinner.style.display = 'inline-block';
+    progressContainer.style.display = 'block';
     
     try {
         let mediaURL = null;
         let mediaType = null;
         
-        // Si hay un archivo multimedia, subirlo a Firebase Storage
         if (mediaFile) {
             mediaType = mediaFile.type.includes('image') ? 'image' : 'video';
             const filePath = `messages/${Date.now()}_${mediaFile.name}`;
-            const storageRef = ref(storage, filePath);
+            const fileRef = storageRef(storage, filePath);
             
-            await uploadBytes(storageRef, mediaFile);
-            mediaURL = await getDownloadURL(storageRef);
+            // Subir archivo (50% del progreso)
+            await uploadBytes(fileRef, mediaFile);
+            progressBar.style.width = '50%';
+            progressText.textContent = '50%';
+            
+            // Obtener URL (75% del progreso)
+            mediaURL = await getDownloadURL(fileRef);
+            progressBar.style.width = '75%';
+            progressText.textContent = '75%';
         }
         
-        // Guardar el mensaje en Firestore
+        // Guardar mensaje (100% del progreso)
         await addDoc(collection(db, 'messages'), {
             name: name,
             group: group,
@@ -878,15 +972,26 @@ async function submitMessage() {
             createdAt: serverTimestamp()
         });
         
+        progressBar.style.width = '100%';
+        progressText.textContent = '100%';
+        
         showAlert('Mensaje publicado con éxito!', 'success');
-        document.getElementById('messageForm').reset();
+        form.reset();
         loadMessages();
     } catch (error) {
         console.error('Error submitting message:', error);
         showAlert(`Error al publicar el mensaje: ${error.message}`, 'error');
     } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Publicar Mensaje';
+        // Restablecer estado
+        setTimeout(() => {
+            progressContainer.style.display = 'none';
+            progressBar.style.width = '0%';
+            progressText.textContent = '0%';
+            
+            submitBtn.disabled = false;
+            submitText.style.display = 'inline-block';
+            submitSpinner.style.display = 'none';
+        }, 1000);
     }
 }
 
@@ -975,7 +1080,7 @@ function addMessageToUI(message) {
     messagesContainer.appendChild(messageItem);
 }
 
-// Función auxiliar para mostrar alertas
+// ===== FUNCIÓN PARA MOSTRAR ALERTAS =====
 function showAlert(message, type) {
     const alert = document.createElement('div');
     alert.className = `alert alert-${type}`;

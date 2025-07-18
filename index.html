@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generación 2025</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -136,9 +136,8 @@
                     <p class="message-gallery-pro">¡Sube tus imagenes en la parte de hasta abajo de la página!</p>
                 </div>
                 <div id="galleryVideos" class="gallery-content">
-                    <p id="alert-vid">Upss... aquí no hay videos. ¡Sé el primero en compartir!</p>
-                    <p class="message-gallery-pro">¡Sube tus videos en la parte de hasta abajo de la página!</p>
                     <div class="gallery-grid" id="videosGrid"></div>
+                    <p class="message-gallery-pro">¡Sube tus videos en la parte de hasta abajo de la página!</p>
                 </div>
             </div>
         </section>
@@ -180,15 +179,35 @@
                     <!--Para fotos-->
                     <form id="photoUploadForm">
                         <input type="file" id="photoInput" accept="image/*" multiple>
-                        <button type="submit" id="uploadPhotoBtn" class="upload-btn">Subir Fotos</button>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                            <div class="progress-text">0%</div>
+                        </div>
+                        <button type="submit" class="upload-btn">
+                            <span class="upload-text">Subir Fotos</span>
+                            <span class="upload-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Subiendo...
+                            </span>
+                        </button>
                     </form>
                     <div id="uploadedPhotos" class="uploaded-items"></div>
                 </div>
+
+                <!--Para videos-->
                 <div id="uploadVideos" class="upload-content">
                     <form id="videoUploadForm">
                         <input type="file" id="videoInput" accept="video/*" multiple>
-                        <button type="submit" id="uploadVideoBtn" class="upload-btn">Subir Videos</button>
-                        </form>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                            <div class="progress-text">0%</div>
+                        </div>
+                            <button type="submit" class="upload-btn">
+                                <span class="upload-text">Subir Videos</span>
+                                <span class="upload-spinner" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Subiendo...
+                            </span>
+                        </button>
+                    </form>
                     <div id="uploadedVideos" class="uploaded-items"></div>
                 </div>
             </div>
@@ -220,8 +239,21 @@
                         <label for="messageMedia">¿Deseas subir alguna imagen o video junto con tu mensaje? (Opcional)</label>
                         <input type="file" id="messageMedia" accept="image/*,video/*">
                     </div>
-                    <button type="submit" class="submit-btn">Publicar Mensaje</button>
-                </form>
+
+                    <!-- Barra de progreso -->
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                            <div class="progress-text">0%</div>
+                        </div>
+
+                        <!-- Botón con estados -->
+                        <button type="submit" class="submit-btn">
+                            <span class="submit-text">Publicar Mensaje</span>
+                            <span class="submit-spinner" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Procesando...
+                            </span>
+                        </button>
+                    </form>
                 <div id="messagesContainer" class="messages-list"></div>
             </div>
         </section>
@@ -295,6 +327,9 @@
         </div>
     </div>
 
+    <!-- Botón de modo oscuro/claro -->
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+
     <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
@@ -303,4 +338,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
 <script src="firebase-config.js" type="module"></script>
 <script src="script.js" type="module"></script>
+</body>
 </html>
+
